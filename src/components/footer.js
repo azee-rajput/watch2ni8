@@ -85,7 +85,7 @@ export default class Footer extends Component{
                     
                         <Col sm={4}>
                             <Title to='/'>Watch2Ni8</Title><br/>
-                            <StyledAnchor href="#" style={{fontSize:"30pt"}}><FontAwesomeIcon icon={['fab','github']}/></StyledAnchor>
+                            <StyledAnchor href="https://github.com/azee-rajput/watch2ni8" style={{fontSize:"30pt"}}><FontAwesomeIcon icon={['fab','github']}/></StyledAnchor>
                         </Col>
                     
 
