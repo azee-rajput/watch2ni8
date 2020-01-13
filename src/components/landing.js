@@ -14,6 +14,7 @@ import Loading from './loading';
 const Title = styled.h1`
   text-align: center;
   color: white;
+  margin-top:20px;
 `;
 
 const Wrapper = styled.div`
@@ -34,6 +35,7 @@ color:white;
 const StyledLink = styled(Link)`
 padding: 5px;
 margin: auto;
+margin-bottom: 20px;
  color: #45f3ff;
  transition:0.5s;
  border: 1px solid #45f3ff;

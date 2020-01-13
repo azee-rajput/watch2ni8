@@ -13,6 +13,7 @@ background: #111111;
 padding:0;
 margin: auto;
 text-align:center;
+color: #555555;
 `;
 
 const RowCustom= styled(Row)`
