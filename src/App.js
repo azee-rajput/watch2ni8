@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'font-awesome/css/font-awesome.min.css';
+import { createGlobalStyle } from 'styled-components';
+
+import Routing from './components/routing';
+import Footer from './components/footer';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faCheckSquare, faLaptopCode)
+
+
+
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    scroll-behavior: smooth;
+   font-family: "raleway";
+   background: #222222;
+}
+`;
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyle/>
+      <Routing/>
+      <Footer/>
     </div>
   );
 }
