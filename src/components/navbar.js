@@ -151,7 +151,7 @@ export default class Navybar extends Component{
       }
 
       entering(e){
-        if(e.charCode==13){
+        if(e.charCode===13){
             e.preventDefault();
             this.clicked();
           }
