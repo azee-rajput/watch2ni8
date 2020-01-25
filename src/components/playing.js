@@ -9,7 +9,7 @@ export default class Playing extends Component{
         return(
             <div>
                 <Navybar/>
-                <Movies url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" heading="Now Playing In Theaters"/>
+                <Movies type="now_playing" heading="Now Playing In Theaters"/>
             </div>
         )
     }

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import api from '../api';
+
 import styled from 'styled-components';
 import {Row, Col, Container} from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
@@ -61,7 +63,6 @@ class Movies extends Component{
         this.state={
             text:"bello",
             baseURI: props.url,
-            heading: props.heading,
             apiKey:"73e58e5716904b8f0c8e5d54c3dc79f1",
             imageBaseURI:"http://image.tmdb.org/t/p/original",
             data:[],
@@ -79,9 +80,12 @@ class Movies extends Component{
 
     componentDidMount(){
         window.scrollTo(0, 0);
-        fetch(this.state.baseURI+this.state.apiKey)
-        .then(response=>response.json())
-        .then(data=>this.setState({data:data.results, mounted:true}));
+
+        if(this.props.type === "now_playing"){
+            api.nowPlaying(data=>this.setState({data:data.results, mounted:true}));
+        }else if(this.props.type === "popular"){
+            api.popular(data=>this.setState({data:data.results, mounted:true}));
+        }
     }
 
     find(id){
@@ -110,7 +114,7 @@ class Movies extends Component{
         return(
             <Wrapper>
                 <Container fluid>
-                <h3>{this.state.heading}</h3>
+                <h3>{this.props.heading}</h3>
                     <Row className="cardParent">
                         {this.state.data.slice(0,parseInt(this.state.sliced)).map((item)=>(
                             

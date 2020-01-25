@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Redirect, Link} from 'react-router-dom';
 
+import api from '../api';
+
 import styled from 'styled-components';
 import {Row, Col, Container} from 'react-bootstrap';
 
@@ -49,7 +51,6 @@ margin-bottom: 20px;
  }
 `;
 
-
 class Landing extends Component{
     constructor(props){
         super(props);
@@ -66,9 +67,7 @@ class Landing extends Component{
 
     componentDidMount(){
         window.scrollTo(0, 0);
-        fetch("https://api.themoviedb.org/3/trending/all/day?api_key="+this.state.apiKey)
-        .then(response=>response.json())
-        .then(data=>this.setState({data:data.results}))
+        api.trending(response=>this.setState({data:response.results}));
     }
 
     componentDidUpdate(){
@@ -101,7 +100,7 @@ class Landing extends Component{
                                 <Row>
                                    <Movies sliced="4"
                                     cover="6"
-                                    url = "https://api.themoviedb.org/3/movie/now_playing?api_key="
+                                    type = "now_playing"
                                     heading="Now Playing In Theaters"/>
                                 </Row>
                                 <Row><StyledLink to="/playing">See More...</StyledLink></Row>                         
@@ -122,8 +121,8 @@ class Landing extends Component{
                                 <Row>
                                    <Movies sliced="9"
                                     cover="4"
-                                    url = "https://api.themoviedb.org/3/movie/popular?api_key="
-                                    heading="Popular Movies"/>
+                                    heading="Popular Movies"
+                                    type="popular"/>
                                 </Row>
                                 <Row><StyledLink to="/popular">See More...</StyledLink></Row>
                             </Col>

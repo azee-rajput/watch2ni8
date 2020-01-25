@@ -9,7 +9,7 @@ export default class Popular extends Component{
         return(
             <div>
                 <Navybar/>
-                <Movies url = "https://api.themoviedb.org/3/movie/popular?api_key=" heading="Popular Movies"/>
+                <Movies type="popular" heading="Popular Movies"/>
             </div>
         )
     }
