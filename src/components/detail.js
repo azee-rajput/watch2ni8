@@ -202,7 +202,7 @@ class Detail extends Component{
                         <Row>
                             <Movies sliced="4"
                                 cover="3"
-                                url = {"https://api.themoviedb.org/3/movie/"+this.props.match.params.idmovie+"/recommendations?api_key="}
+                                type = "recommend"
                                 heading="Recommended"/>
                         </Row>
 

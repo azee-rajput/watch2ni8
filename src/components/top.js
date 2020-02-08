@@ -9,7 +9,7 @@ export default class Top extends Component{
         return(
             <div>
                 <Navybar/>
-                <Movies url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" heading="Top Rated Movies"/>
+                <Movies type="top" heading="Top Rated Movies"/>
             </div>
         )
     }

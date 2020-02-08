@@ -9,7 +9,7 @@ export default class trending extends Component{
         return(
             <div>
                 <Navybar/>
-                <Movies url = "https://api.themoviedb.org/3/trending/all/day?api_key=" heading="Trending Movies"/>
+                <Movies type="trending" heading="Trending Movies"/>
             </div>
         )
     }

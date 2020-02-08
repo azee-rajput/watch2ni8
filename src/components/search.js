@@ -52,7 +52,7 @@ export default class Search extends Component{
                         <Navybar/>
                         <Movies sliced="100"
                             cover="3"
-                            url = {"https://api.themoviedb.org/3/search/multi?query="+this.state.searched+"&api_key="}
+                            type = "search"
                             heading={"Searching Results For "+this.state.searched}/>
                     </div>
                 )

@@ -85,6 +85,14 @@ class Movies extends Component{
             api.nowPlaying(data=>this.setState({data:data.results, mounted:true}));
         }else if(this.props.type === "popular"){
             api.popular(data=>this.setState({data:data.results, mounted:true}));
+        }else if(this.props.type === "top"){
+            api.top(data=>this.setState({data:data.results, mounted:true}));
+        }else if(this.props.type === "trending"){
+            api.popular(data=>this.setState({data:data.results, mounted:true}));
+        }else if(this.props.type === "search"){
+            api.search(data=>this.setState({data:data.results, mounted:true}));
+        }else if(this.props.type === "recommend"){
+            api.recommend(data=>this.setState({data:data.results, mounted:true}));
         }
     }
 
