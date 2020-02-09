@@ -113,6 +113,12 @@ class Movies extends Component{
             )
         }
 
+        if(this.state.data === undefined){
+            return (<Wrapper>
+                <ResultsHead><h1>No Results Found</h1></ResultsHead>
+            </Wrapper>) 
+        }
+        
         if(this.state.data.length < 1 && this.state.mounted){
             return (<Wrapper>
                 <ResultsHead><h1>No Results Found</h1></ResultsHead>

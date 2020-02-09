@@ -109,17 +109,42 @@ class Detail extends Component{
         this.setState({movieId:this.props.match.params.idmovie});
         fetch(this.state.baseURI+movieId+this.state.apiKey)
         .then(response=>response.json())
-        .then(data=>this.setState({data:data, genres:data.genres}))
+        .then(data=>{
+            if(data.genres===undefined){
+                this.setState({data:data})
+            }else{
+                this.setState({data:data, genres:data.genres})
+            }
+        })
 
         fetch(this.state.baseURI+movieId+"/credits"+this.state.apiKey)
         .then(response=>response.json())
-        .then(data=>this.setState({cast:data.cast}))
+        .then(data=>{
+            if(data.cast===undefined){
+                this.setState({cast:undefined})
+            }
+            else{
+                this.setState({cast:data.cast})
+            }
+        })
 
         fetch(this.state.baseURI+movieId+"/videos"+this.state.apiKey)
         .then(response=>response.json())
-        .then(data=>data.results.filter(res=>res.type==="Trailer").map(item=>this.setState({video: item.key, mounted:true})))
+        .then(data=>{
+            if(data.status_code===34){
+                // console.log(data);
+                this.setState({mounted:true})
+            }else{
+                console.log(data.length);
+                // console.log(data);
+                data.results.filter(res=>res.type==="Trailer").map(item=>this.setState({video: item.key, mounted:true}))
+            }
+            
+        })
+        
         
     }
+
 
     componentDidUpdate(){
         if (this.state.movieId !== this.props.match.params.idmovie){
@@ -133,8 +158,18 @@ class Detail extends Component{
     
 
     render(){
+        // console.log(this.state.cast.length)
         if(!this.state.mounted){
             return ( <Loading/>)
+        }
+
+        if( this.state.cast=== undefined || this.state.cast.length === 0){
+            console.log(this.state.cast)
+            return(
+                <div style={{minHeight:"80vh", color:"#45f3ff", textAlign:"center"}}>
+                    <h1>Something's not right. Sorry for inconvenience. <br/> Please try again later</h1>
+                </div>
+            )
         }
 
         if(this.state.paramsChange){
@@ -152,7 +187,10 @@ class Detail extends Component{
 
             fetch(this.state.baseURI+this.state.movieId+"/videos"+this.state.apiKey)
             .then(response=>response.json())
-            .then(data=>data.results.filter(res=>res.type==="Trailer").map(item=>this.setState({video: item.key, mounted: true})))
+            .then(data=>{
+                data.results.filter(res=>res.type==="Trailer")
+                .map(item=>this.setState({video: item.key, mounted: true}))
+            })
             return <Loading/>
         }else{
 
@@ -184,7 +222,7 @@ class Detail extends Component{
                             <Col className="rightArea" sm={3}>
                                 <Row className="scrollable" >
                                     <h3 className="castHeading"><b>Cast</b></h3>
-                                    {this.state.cast.map((char)=>(
+                                    {this.state.cast===undefined ? null : this.state.cast.map((char)=>(
                                         <Row className="cast">
                                             <Col><img src={this.state.imageBaseURI+char.profile_path} alt={char.name+" Image not available"}/></Col>
                                             <Col><h5>{char.character}</h5> <h6>{char.name}</h6></Col>
